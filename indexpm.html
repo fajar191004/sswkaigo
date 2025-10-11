@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device=width,initial-scale=1.0">
+  <title>Tebak Kata Jepang</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="text-align:center; font-family:sans-serif; margin-top:100px;">
+    <h1>Tebak Kosa Kata bidang kaigo🩺🧓✨</h1>
+  <h2 id="soal">Kata:"調理 (Chouri)</h2>
+  <input id="jawaban" placeholder="Tulis jawaban..." />
+  <button onclick="cek()">Cek</button>
+  <p id="hasil"></p>
+
+  <script>
+    const soal = [
+{ jp: "介護 (Kaigo)", id: ["perawatan lansia"] },
+{ jp: "利用者 (Riyousha)", id: ["pengguna layanan", "pasien"] },
+{ jp: "入浴介助 (Nyuyoku Kaijo)", id: ["bantuan mandi"] },
+{ jp: "食事介助 (Shokuji Kaijo)", id: ["bantuan makan"] },
+{ jp: "排泄介助 (Haisetsu Kaijo)", id: ["bantuan buang air"] },
+{ jp: "移動介助 (Idou Kaijo)", id: ["bantuan berpindah"] },
+{ jp: "清拭 (Seishiki)", id: ["membersihkan tubuh"] },
+{ jp: "着替え (Kigae)", id: ["ganti pakaian"] },
+{ jp: "体位変換 (Taii Henkan)", id: ["mengubah posisi tubuh"] },
+{ jp: "口腔ケア (Koukuu Kea)", id: ["perawatan mulut"] },
+{ jp: "介護職員 (Kaigo Shokuin)", id: ["petugas perawatan"] },
+{ jp: "施設 (Shisetsu)", id: ["fasilitas", "panti"] },
+{ jp: "車椅子 (Kuruma Isu)", id: ["kursi roda"] },
+{ jp: "歩行器 (Hokouki)", id: ["alat bantu jalan"] },
+{ jp: "点滴 (Tenteki)", id: ["infus"] },
+{ jp: "体温計 (Taionkei)", id: ["termometer"] },
+{ jp: "血圧 (Ketsuatsu)", id: ["tekanan darah"] },
+{ jp: "記録 (Kiroku)", id: ["catatan", "laporan"] },
+{ jp: "夜勤 (Yakin)", id: ["shift malam"] },
+{ jp: "日勤 (Nikkin)", id: ["shift siang"] },
+{ jp: "介護福祉士 (Kaigo Fukushishi)", id: ["perawat lansia bersertifikat"] },
+{ jp: "見守り (Mimamori)", id: ["mengawasi"] },
+{ jp: "ナースコール (Naasu Kooru)", id: ["tombol panggil perawat"] },
+{ jp: "転倒 (Tentou)", id: ["jatuh"] },
+{ jp: "異常 (Ijou)", id: ["kelainan", "tidak normal"] },
+{ jp: "痰 (Tan)", id: ["dahak"] },
+{ jp: "尿 (Nyou)", id: ["urine"] },
+{ jp: "便 (Ben)", id: ["tinja"] },
+{ jp: "バイタル (Baitaru)", id: ["tanda vital"] },
+{ jp: "意識 (Ishiki)", id: ["kesadaran"] },
+{ jp: "歩行 (Hokou)", id: ["berjalan"] },
+{ jp: "立ち上がり (Tachiagari)", id: ["berdiri dari duduk"] },
+{ jp: "座位 (Zai)", id: ["posisi duduk"] },
+{ jp: "仰臥位 (Gougai)", id: ["posisi telentang"] },
+{ jp: "側臥位 (Sokugai)", id: ["posisi miring"] },
+{ jp: "うつ伏せ (Utsubuse)", id: ["posisi tengkurap"] },
+{ jp: "ベッド (Beddo)", id: ["tempat tidur"] },
+{ jp: "リハビリ (Rihabiri)", id: ["rehabilitasi"] },
+{ jp: "体調 (Taichou)", id: ["kondisi tubuh"] },
+{ jp: "食欲 (Shokuyoku)", id: ["nafsu makan"] },
+{ jp: "薬 (Kusuri)", id: ["obat"] },
+{ jp: "配薬 (Haiyaku)", id: ["pemberian obat"] },
+{ jp: "介護計画 (Kaigo Keikaku)", id: ["rencana perawatan"] },
+{ jp: "認知症 (Ninchishou)", id: ["demensia"] },
+{ jp: "高齢者 (Koureisha)", id: ["lansia"] },
+{ jp: "家族 (Kazoku)", id: ["keluarga"] },
+{ jp: "緊急 (Kinkyuu)", id: ["darurat"] },
+{ jp: "事故 (Jiko)", id: ["kecelakaan"] },
+{ jp: "安全 (Anzen)", id: ["keamanan"] },
+{ jp: "消毒 (Shoudoku)", id: ["desinfeksi"] },
+    ];
+
+  soal.sort(() => Math.random() - 0.5);
+
+    let index = 0;
+    document.getElementById("soal").textContent = "Kata: " + soal[index].jp;
+
+    function cek() {
+      const jwb = document.getElementById("jawaban").value.trim().toLowerCase();
+      const hasil = document.getElementById("hasil");
+      const jawabanBenar = soal[index].id.map(a => a.toLowerCase());
+
+      if (jawabanBenar.includes(jwb)) {
+        hasil.style.color = "green";
+        hasil.textContent = "✅ Benar!";
+        index++;
+        if (index < soal.length) {
+          setTimeout(() => {
+            document.getElementById("soal").textContent = "Kata: " + soal[index].jp;
+            document.getElementById("jawaban").value = "";
+            hasil.textContent = "";
+          }, 1000);
+        } else {
+          hasil.style.color = "blue";
+          hasil.textContent = "🎉 Semua soal selesai!";
+        }
+      } else {
+        hasil.style.color = "red";
+        hasil.textContent = "❌ Salah! Jawaban yang benar: " + jawabanBenar.join(" / ");
+      }
+    }
+  </script>
+  <footer>©️ Fajar Cun</footer>
+</body>
+</html>
